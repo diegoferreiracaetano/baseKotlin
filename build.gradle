@@ -42,7 +42,14 @@ ext {
             supportLibrary              : '1.0.0-rc01',
             constraintlayout            : '1.1.2',
             extensions                  : '2.0.0-rc01',
-            koin                        : '1.0.0-beta-3'
+            koin                        : '1.0.0-beta-3',
+            retrofit                    : '2.4.0',
+            rxkotlin                    : '2.2.0',
+            rxandroid                   : '2.0.2',
+            retrofitRx                  : '1.0.0',
+            okhttp                      : '3.10.0',
+            okhttpUrlconnection         : '3.0.1',
+            loggingInterceptor          : '3.4.1'
     ]
 
     testingLibraries = [

@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 def cfg = rootProject.ext.configuration
 def libs = rootProject.ext.libraries;
 def test = rootProject.ext.testingLibraries;
@@ -17,12 +19,18 @@ android {
         versionCode cfg.versionCode
         versionName cfg.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'END_POINT', '"https://dog.ceo/api/"'
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -33,11 +41,19 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$libs.constraintlayout"
     implementation "androidx.lifecycle:lifecycle-extensions:$libs.extensions"
     implementation "org.koin:koin-androidx-viewmodel:$libs.koin"
+    implementation "com.squareup.retrofit2:converter-gson:$libs.retrofit"
+    implementation "io.reactivex.rxjava2:rxkotlin:$libs.rxkotlin"
+    implementation "io.reactivex.rxjava2:rxandroid:$libs.rxandroid"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$libs.retrofitRx"
 
+    implementation "com.squareup.okhttp3:okhttp:$libs.okhttp"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$libs.okhttpUrlconnection"
+    implementation "com.squareup.okhttp3:logging-interceptor:$libs.loggingInterceptor"
 
     testImplementation "junit:junit:$test.junit"
     androidTestImplementation "androidx.test:runner:$test.runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$test.espresso"
     implementation project(path: ':data')
     implementation project(path: ':domain')
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha1'
 }

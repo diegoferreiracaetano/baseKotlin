@@ -1,6 +1,8 @@
 package com.diegoferreiracaetano.domain.dog
 
+import io.reactivex.Flowable
+
 interface DogRepository{
-    fun get(): Dog
+    fun getList(): Flowable<List<Dog>>
 }
 
