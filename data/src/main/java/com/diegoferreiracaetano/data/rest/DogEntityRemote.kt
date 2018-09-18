@@ -19,7 +19,7 @@ class DogEntityRemote {
                    dog = Dog(key, "")
                 else{
                    value.forEach{
-                    dog = Dog(key +" - "+it,"")
+                    dog = Dog(key +"_"+it,"")
                    }
                 }
                 list.add(dog!!)

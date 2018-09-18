@@ -49,6 +49,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$libs.okhttp"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$libs.okhttpUrlconnection"
     implementation "com.squareup.okhttp3:logging-interceptor:$libs.loggingInterceptor"
+    implementation "com.github.bumptech.glide:glide:$libs.glide"
 
     testImplementation "junit:junit:$test.junit"
     androidTestImplementation "androidx.test:runner:$test.runner"
@@ -56,4 +57,5 @@ dependencies {
     implementation project(path: ':data')
     implementation project(path: ':domain')
     implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha1'
+    implementation 'androidx.cardview:cardview:1.0.0-rc02'
 }

@@ -1,5 +1,6 @@
 package com.diegoferreiracaetano.basekotlin.ui.main
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.diegoferreiracaetano.basekotlin.util.SingleLiveData
 import com.diegoferreiracaetano.domain.dog.Dog
@@ -10,18 +11,17 @@ import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(val repository : DogRepository) : ViewModel() {
 
-    private val _result = SingleLiveData<List<Dog>>()
-    val result = _result
+    val result = MutableLiveData<List<Dog>>()
 
     private val _error = SingleLiveData<Throwable>()
     val error = _error
 
-    fun getDog() {
-        repository.getList()
+    fun getPhotoDog(breeds:List<String>) {
+        repository.getPhotos(breeds)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
-                onNext = { result.value = it },
+                onNext = { result.postValue(it) },
                 onError =  { error.value = it },
                 onComplete = { })
 

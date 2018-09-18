@@ -3,6 +3,7 @@ package com.diegoferreiracaetano.domain.dog
 import io.reactivex.Flowable
 
 interface DogRepository{
-    fun getList(): Flowable<List<Dog>>
+    
+    fun getPhotos(breeds: List<String>): Flowable<List<Dog>>
 }
 

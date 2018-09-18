@@ -1,7 +1,7 @@
 package com.diegoferreiracaetano.basekotlin.di
 
 import com.diegoferreiracaetano.basekotlin.ui.main.MainViewModel
-import com.diegoferreiracaetano.data.rest.DogRepositoryRemote
+import com.diegoferreiracaetano.data.rest.DogReposistoryRemote
 import com.diegoferreiracaetano.domain.dog.DogRepository
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Interceptor
@@ -24,7 +24,7 @@ val appModule : Module = module {
 
 
     viewModel { MainViewModel(get()) }
-    single { DogRepositoryRemote(get()) as DogRepository }
+    single { DogReposistoryRemote(get()) as DogRepository }
     single {
 
 
