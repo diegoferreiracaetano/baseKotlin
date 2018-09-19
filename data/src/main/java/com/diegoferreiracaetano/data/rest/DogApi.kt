@@ -2,13 +2,13 @@ package com.diegoferreiracaetano.data.rest
 
 import io.reactivex.Flowable
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface DogApi{
 
-    @GET("breeds/list/all")
-    fun getList(): Flowable<DogEntityRemote>
+    @GET("breeds")
+    fun getList(@Query("limit") limit:Int, @Query("page") page:Int): Flowable<List<DogEntityRemote>>
 
-    @GET("breed/{breed}/images/random")
-    fun getPhoto(@Path("breed") breed: String): Flowable<DogPhotoEntityRemote>
+    @GET("images/search")
+    fun getPhoto(@Query("breed_id") breed: Int): Flowable<List<DogPhotoEntityRemote>>
 }

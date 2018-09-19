@@ -2,28 +2,33 @@ package com.diegoferreiracaetano.basekotlin.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.diegoferreiracaetano.basekotlin.util.SingleLiveData
 import com.diegoferreiracaetano.domain.dog.Dog
-import com.diegoferreiracaetano.domain.dog.DogRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.diegoferreiracaetano.domain.dog.interactor.GetListDogsInteractor
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(val repository : DogRepository) : ViewModel() {
+class MainViewModel(val getListDogsInteractor: GetListDogsInteractor) : ViewModel() {
 
     val result = MutableLiveData<List<Dog>>()
+    val error = MutableLiveData<Throwable>()
+    val loading = MutableLiveData<Boolean>()
+    val empty = MutableLiveData<Boolean>()
 
-    private val _error = SingleLiveData<Throwable>()
-    val error = _error
+    fun getList() : Disposable {
 
-    fun getPhotoDog(breeds:List<String>) {
-        repository.getPhotos(breeds)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                onNext = { result.postValue(it) },
-                onError =  { error.value = it },
-                onComplete = { })
+        loading.postValue(true)
+
+        return getListDogsInteractor.execute(GetListDogsInteractor.Request())
+                .subscribeBy (
+                        onNext = {
+                            result.postValue(it)
+                            loading.postValue(false)
+                            empty.postValue(it.isEmpty())
+                        },
+                        onError =  {
+                            loading.postValue(false)
+                            error.postValue(it) },
+                        onComplete = { })
 
     }
 }

@@ -39,7 +39,7 @@ dependencies {
     testImplementation "junit:junit:$test.junit"
     androidTestImplementation "androidx.test:runner:$test.runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$test.espresso"
-    implementation project(path: ':domain')
+    api project(path: ':domain')
 }
 repositories {
     mavenCentral()

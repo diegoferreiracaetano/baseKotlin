@@ -1,21 +1,14 @@
 package com.diegoferreiracaetano.data.rest
 
-class DogPhotoEntityRemote {
-
-    private lateinit var status:String
-    private lateinit var message: String
+data class DogPhotoEntityRemote(var id:String,var url:String) {
 
     companion object {
 
-        fun parse(dogPhotoEntityRemote: DogPhotoEntityRemote): String {
-
-            var photo = ""
-
-            if(dogPhotoEntityRemote.status == "success"){
-                photo = dogPhotoEntityRemote.message
+        fun parse(dogPhotoEntityRemotes: List<DogPhotoEntityRemote>): String {
+            dogPhotoEntityRemotes.forEach{
+                return it.url
             }
-
-            return photo
+            return ""
         }
     }
 }

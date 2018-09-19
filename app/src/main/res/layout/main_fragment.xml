@@ -14,17 +14,27 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_animal_list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setReviewAdapter="@{viewModel.result}"
-            tools:listitem="@layout/animal_list_item" />
+            app:onRefreshListener="@{() -> viewModel.getList()}"
+            app:refreshing="@{viewModel.loading}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_animal_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                app:setReviewAdapter="@{viewModel.result}"
+                app:showLongMessage="@{viewModel.error}"
+                tools:listitem="@layout/animal_list_item" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

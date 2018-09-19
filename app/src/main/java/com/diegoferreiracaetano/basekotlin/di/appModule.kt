@@ -3,6 +3,7 @@ package com.diegoferreiracaetano.basekotlin.di
 import com.diegoferreiracaetano.basekotlin.ui.main.MainViewModel
 import com.diegoferreiracaetano.data.rest.DogReposistoryRemote
 import com.diegoferreiracaetano.domain.dog.DogRepository
+import com.diegoferreiracaetano.domain.dog.interactor.GetListDogsInteractor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -17,7 +18,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 
-private val BASE_URL = "https://dog.ceo/api/"
+private val BASE_URL = "https://api.thedogapi.com/v1/"
 private val REQUEST_TIMEOUT :Long = 60
 
 val appModule : Module = module {
@@ -25,6 +26,8 @@ val appModule : Module = module {
 
     viewModel { MainViewModel(get()) }
     single { DogReposistoryRemote(get()) as DogRepository }
+    single { GetListDogsInteractor(get()) }
+
     single {
 
 

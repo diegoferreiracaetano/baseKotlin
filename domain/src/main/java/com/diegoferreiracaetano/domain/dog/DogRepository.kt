@@ -4,6 +4,6 @@ import io.reactivex.Flowable
 
 interface DogRepository{
     
-    fun getPhotos(breeds: List<String>): Flowable<List<Dog>>
+    fun getPhotos(): Flowable<List<Dog>>
 }
 

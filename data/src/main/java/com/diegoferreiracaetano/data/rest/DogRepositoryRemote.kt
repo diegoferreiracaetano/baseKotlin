@@ -10,16 +10,15 @@ class DogReposistoryRemote(retrofit: Retrofit) : DogRepository {
 
     var api = retrofit.create(DogApi::class.java)
 
-    override fun getPhotos(breeds: List<String>): Flowable<List<Dog>> {
+    override fun getPhotos(): Flowable<List<Dog>> {
 
-      return  Flowable.just(breeds)
+        return  api.getList(10,0)
+                .map { DogEntityRemote.parse(it) }
                 .flatMap{ Flowable.fromIterable(it) }
-                .take(20)
-                .flatMap { string-> api.getPhoto(string).map { DogPhotoEntityRemote.parse(it) }
-                .flatMapMaybe {photo-> Maybe.just(Dog(string,photo))}}
+                .flatMap { dog-> api.getPhoto(dog.id).map { DogPhotoEntityRemote.parse(it) }
+                        .flatMapMaybe {photo-> Maybe.just(dog.copy(dog.id,dog.breed,photo))}}
                 .toList()
                 .toFlowable()
-
 
     }
 }

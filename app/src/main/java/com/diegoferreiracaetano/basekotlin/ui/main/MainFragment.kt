@@ -1,26 +1,29 @@
 package com.diegoferreiracaetano.basekotlin.ui.main
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.diegoferreiracaetano.basekotlin.R
 import com.diegoferreiracaetano.basekotlin.databinding.MainFragmentBinding
+import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.main_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-
-class MainFragment : Fragment() {
+class MainFragment : Fragment(),SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
     val viewModel: MainViewModel by viewModel()
+
+    val disposable = CompositeDisposable()
 
     private lateinit var binding: MainFragmentBinding
 
@@ -36,11 +39,17 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val breeds =resources.getStringArray(R.array.string_array_name).toList()
-        viewModel.getPhotoDog(breeds)
+        disposable.add(viewModel.getList())
+        swipeLayout.setOnRefreshListener(this);
+    }
 
-        viewModel.error.observe(this, Observer {
-            Toast.makeText(context,"Error ",Toast.LENGTH_LONG).show()
-        })
+
+    override fun onRefresh() {
+        Handler().postDelayed({ swipeLayout.setRefreshing(false) }, 5000)
+    }
+
+    override fun onDestroy() {
+        disposable.clear()
+        super.onDestroy()
     }
 }
