@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="viewModel"
@@ -22,17 +21,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:onRefreshListener="@{() -> viewModel.getList()}"
-            app:refreshing="@{viewModel.loading}">
+            app:onRefreshListener="@{() -> viewModel.refresh()}"
+            app:setLoad="@{viewModel.initialLoad}">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_animal_list"
+                android:id="@+id/recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
-                app:setReviewAdapter="@{viewModel.result}"
-                app:showLongMessage="@{viewModel.error}"
-                tools:listitem="@layout/animal_list_item" />
+                app:setAdapter="@{viewModel.result}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:setNetworkState="@{viewModel.networkState}"
+                app:retryCallback="@{()-> viewModel.retry()}"
+                tools:listitem="@layout/item_dog" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

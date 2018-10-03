@@ -40,8 +40,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$libs.supportLibrary"
     implementation "androidx.recyclerview:recyclerview:$libs.recyclerview"
     implementation "androidx.constraintlayout:constraintlayout:$libs.constraintlayout"
-    implementation 'androidx.cardview:cardview:1.0.0-rc02'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0-rc02"
+    implementation "androidx.cardview:cardview:$libs.cardView"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$libs.swipe"
     implementation "com.google.android.material:material:$libs.materialVersion"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$libs.extensions"
@@ -56,6 +56,9 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$libs.okhttpUrlconnection"
     implementation "com.squareup.okhttp3:logging-interceptor:$libs.loggingInterceptor"
     implementation "com.github.bumptech.glide:glide:$libs.glide"
+
+    implementation "androidx.paging:paging-common:$libs.paging"
+    implementation "androidx.paging:paging-runtime:$libs.paging"
 
     testImplementation "junit:junit:$test.junit"
     androidTestImplementation "androidx.test:runner:$test.runner"

@@ -6,11 +6,11 @@ import com.diegoferreiracaetano.domain.dog.DogRepository
 
 import io.reactivex.Flowable
 
-public class GetListDogsInteractor(private val repository: DogRepository) : InteractorFlowable<List<Dog>, GetListDogsInteractor.Request>() {
+class GetListDogsInteractor(private val repository: DogRepository) : InteractorFlowable<List<Dog>, GetListDogsInteractor.Request>() {
 
     override fun create(request: Request): Flowable<List<Dog>> {
-        return repository.getPhotos()
+        return repository.getList(request.limit,request.page)
     }
 
-    class Request() : InteractorFlowable.Request()
+    data class Request(val limit:Int,val page:Int) : InteractorFlowable.Request()
 }

@@ -8,11 +8,11 @@ import retrofit2.Retrofit
 
 class DogReposistoryRemote(retrofit: Retrofit) : DogRepository {
 
-    var api = retrofit.create(DogApi::class.java)
+    private var api = retrofit.create(DogApi::class.java)
 
-    override fun getPhotos(): Flowable<List<Dog>> {
+    override fun getList(limit:Int,page:Int): Flowable<List<Dog>> {
 
-        return  api.getList(10,0)
+        return  api.getList(limit,page)
                 .map { DogEntityRemote.parse(it) }
                 .flatMap{ Flowable.fromIterable(it) }
                 .flatMap { dog-> api.getPhoto(dog.id).map { DogPhotoEntityRemote.parse(it) }

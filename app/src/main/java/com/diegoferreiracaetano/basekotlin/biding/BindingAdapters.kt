@@ -1,12 +1,15 @@
-package com.diegoferreiracaetano.basekotlin.ui.main
+package com.diegoferreiracaetano.basekotlin.biding
 
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.diegoferreiracaetano.basekotlin.ui.main.adapter.DogAdapter
+import com.diegoferreiracaetano.data.rest.NetworkState
 import com.diegoferreiracaetano.domain.dog.Dog
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -15,11 +18,30 @@ import com.google.android.material.snackbar.Snackbar
 object BindingAdapters {
 
     @JvmStatic
-    @BindingAdapter("setReviewAdapter")
-    fun setReviewAdapter(recyclerView: RecyclerView, items: List<Dog>?) {
+    @BindingAdapter("setAdapter","retryCallback","setNetworkState", requireAll= false)
+    fun RecyclerView.setReviewAdapter(items: PagedList<Dog>?,retryCallback: () -> Unit, networkState:NetworkState?) {
         items?.let {
-            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-            recyclerView.adapter = AnimalListAdapter(it)
+            if(adapter == null)
+                 adapter = DogAdapter(retryCallback)
+
+            (adapter as DogAdapter).submitList(items)
+            (adapter as DogAdapter).setNetworkState(networkState)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("isVisible")
+    fun View.isVisible(boolean: Boolean) {
+        visibility = if(boolean) View.VISIBLE else View.GONE
+    }
+
+    @JvmStatic
+    @BindingAdapter("setLoad")
+    fun SwipeRefreshLayout.setLoad(networkState:NetworkState?) {
+        if(networkState?.status == NetworkState.LOADING.status){
+            isRefreshing = true
+        }else{
+            isRefreshing = false
         }
     }
 

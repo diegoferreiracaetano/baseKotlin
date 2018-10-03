@@ -2,4 +2,7 @@
     <string name="app_name">I Love Pets</string>
     <string name="dog_photo">Dog photo</string>
     <string name="dog_breed">Breed</string>
+    <string name="retry">Retry</string>
+    <string name="error">Error</string>
+    <string name="empty" />
 </resources>
