@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.data.rest
+package com.diegoferreiracaetano.data.remoto.rest.dog.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
@@ -13,7 +13,7 @@ class DogDataSourceFactory (
     val sourceLiveData = MutableLiveData<DogDataSource>()
 
     override fun create(): DataSource<Int, Dog> {
-        val dataSource = DogDataSource(disposable,interactor)
+        val dataSource = DogDataSource(disposable, interactor)
         sourceLiveData.postValue(dataSource)
         return dataSource
     }

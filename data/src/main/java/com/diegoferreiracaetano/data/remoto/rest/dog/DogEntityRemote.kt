@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.data.rest
+package com.diegoferreiracaetano.data.remoto.rest.dog
 
 import com.diegoferreiracaetano.domain.dog.Dog
 

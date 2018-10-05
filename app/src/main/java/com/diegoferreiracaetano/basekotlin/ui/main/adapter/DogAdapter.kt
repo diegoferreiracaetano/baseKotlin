@@ -5,7 +5,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.basekotlin.R
-import com.diegoferreiracaetano.data.rest.NetworkState
+import com.diegoferreiracaetano.data.NetworkState
 import com.diegoferreiracaetano.domain.dog.Dog
 
 class DogAdapter(private val retryCallback: () -> Unit) :

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.diegoferreiracaetano.data.rest
+package com.diegoferreiracaetano.data
 
 enum class Status {
     RUNNING,

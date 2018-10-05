@@ -1,15 +1,10 @@
 package com.diegoferreiracaetano.basekotlin.di
 
-import com.diegoferreiracaetano.basekotlin.ui.main.MainViewModel
-import com.diegoferreiracaetano.data.rest.DogReposistoryRemote
-import com.diegoferreiracaetano.domain.dog.DogRepository
-import com.diegoferreiracaetano.domain.dog.interactor.GetListDogsInteractor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -23,13 +18,7 @@ private val REQUEST_TIMEOUT :Long = 60
 
 val appModule : Module = module {
 
-
-    viewModel { MainViewModel(get()) }
-    single { DogReposistoryRemote(get()) as DogRepository }
-    single { GetListDogsInteractor(get()) }
-
     single {
-
 
         val httpClient = OkHttpClient().newBuilder()
             .connectTimeout(REQUEST_TIMEOUT , TimeUnit.SECONDS)
@@ -53,7 +42,6 @@ val appModule : Module = module {
                 return chain.proceed(request)
             }
         })
-
 
         httpClient.build();
 

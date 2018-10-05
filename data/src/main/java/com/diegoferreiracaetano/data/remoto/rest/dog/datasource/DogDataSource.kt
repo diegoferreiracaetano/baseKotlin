@@ -1,7 +1,8 @@
-package com.diegoferreiracaetano.data.rest
+package com.diegoferreiracaetano.data.remoto.rest.dog.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.diegoferreiracaetano.data.NetworkState
 import com.diegoferreiracaetano.domain.dog.Dog
 import com.diegoferreiracaetano.domain.dog.interactor.GetListDogsInteractor
 import io.reactivex.Completable

@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.data.rest
+package com.diegoferreiracaetano.data.remoto.rest.dog
 
 data class DogPhotoEntityRemote(var id:String,var url:String) {
 

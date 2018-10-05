@@ -1,13 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.50'
+    ext.kotlin_version = '1.2.70'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0-alpha05'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha12'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -55,7 +55,10 @@ ext {
             loggingInterceptor          : '3.4.1',
             glide                       : '3.8.0',
             materialVersion             : '1.0.0',
-            paging                      : '2.0.0'
+            paging                      : '2.0.0',
+            room                        : '2.0.0',
+            debugDB                     : '1.0.3',
+            fresco                      : '1.10.0'
     ]
 
     testingLibraries = [

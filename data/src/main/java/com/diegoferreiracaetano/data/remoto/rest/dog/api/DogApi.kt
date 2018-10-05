@@ -1,5 +1,7 @@
-package com.diegoferreiracaetano.data.rest
+package com.diegoferreiracaetano.data.remoto.rest.dog.api
 
+import com.diegoferreiracaetano.data.remoto.rest.dog.DogEntityRemote
+import com.diegoferreiracaetano.data.remoto.rest.dog.DogPhotoEntityRemote
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query
