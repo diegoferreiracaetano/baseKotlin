@@ -1,5 +1,6 @@
 package com.diegoferreiracaetano.basekotlin.di
 
+import com.diegoferreiracaetano.basekotlin.BuildConfig
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -13,7 +14,6 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 
-private val BASE_URL = "https://api.thedogapi.com/v1/"
 private val REQUEST_TIMEOUT :Long = 60
 
 val appModule : Module = module {
@@ -50,7 +50,7 @@ val appModule : Module = module {
     single {
         Retrofit.Builder()
                 .client(get ())
-                .baseUrl(BASE_URL)
+                .baseUrl(BuildConfig.END_POINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build() }

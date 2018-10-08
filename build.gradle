@@ -58,7 +58,7 @@ ext {
             paging                      : '2.0.0',
             room                        : '2.0.0',
             debugDB                     : '1.0.3',
-            fresco                      : '1.10.0'
+            circleImage                 : '2.2.0'
     ]
 
     testingLibraries = [

@@ -1,8 +1,7 @@
 package com.diegoferreiracaetano.basekotlin.di
 
 import androidx.room.Room
-import com.diegoferreiracaetano.data.local.LocalDb
-import com.diegoferreiracaetano.data.local.dog.DogDao
+import com.diegoferreiracaetano.data.LocalDb
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 
@@ -14,5 +13,6 @@ val dbModule : Module = module {
                 .allowMainThreadQueries().build()
     }
 
-    single{ get<LocalDb>().dogDao() as DogDao }
+    single{ get<LocalDb>().repoDao() }
+    single{ get<LocalDb>().pullDao() }
 }

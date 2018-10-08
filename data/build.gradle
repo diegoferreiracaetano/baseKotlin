@@ -48,6 +48,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$libs.room"
     debugImplementation "com.amitshekhar.android:debug-db:$libs.debugDB"
 
+
     api project(path: ':domain')
 }
 repositories {

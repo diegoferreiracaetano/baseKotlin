@@ -19,8 +19,7 @@ android {
         versionCode cfg.versionCode
         versionName cfg.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField 'String', 'END_POINT', '"https://dog.ceo/api/"'
+        buildConfigField 'String', 'END_POINT', '"https://api.github.com/"'
     }
     buildTypes {
         release {
@@ -66,11 +65,10 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$libs.extensions"
     testImplementation "org.koin:koin-test:$test.koin"
 
-    implementation "com.facebook.fresco:fresco:$libs.fresco"
-    implementation "com.facebook.fresco:imagepipeline-okhttp3:$libs.fresco"
-
     implementation "androidx.room:room-rxjava2:$libs.room"
     kapt "androidx.room:room-compiler:$libs.room"
+
+    implementation "de.hdodenhof:circleimageview:$libs.circleImage"
 
     api project(path: ':data')
     api project(path: ':domain')

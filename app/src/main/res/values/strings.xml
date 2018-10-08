@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">I Love Pets</string>
-    <string name="dog_photo">Dog photo</string>
-    <string name="dog_breed">Breed</string>
+    <string name="app_name">Github</string>
+    <string name="description">Description</string>
     <string name="retry">Retry</string>
     <string name="error">Error</string>
     <string name="empty" />
+    <string name="name_repository">Name Repository</string>
+    <string name="repository_name">Repository Name</string>
 </resources>

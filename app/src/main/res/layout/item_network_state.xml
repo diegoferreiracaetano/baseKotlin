@@ -3,10 +3,10 @@
     <data>
         <variable
             name="networkState"
-            type="com.diegoferreiracaetano.data.NetworkState" />
+            type="com.diegoferreiracaetano.domain.NetworkState" />
         <variable
             name="status"
-            type="com.diegoferreiracaetano.data.Status" />
+            type="com.diegoferreiracaetano.domain.Status" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

@@ -2,16 +2,17 @@ package com.diegoferreiracaetano.basekotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.diegoferreiracaetano.basekotlin.ui.main.MainFragment
+import com.diegoferreiracaetano.basekotlin.ui.repo.RepoFragment
+import com.diegoferreiracaetano.basekotlin.R
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
+                    .replace(R.id.container, RepoFragment.newInstance())
                     .commitNow()
         }
     }
