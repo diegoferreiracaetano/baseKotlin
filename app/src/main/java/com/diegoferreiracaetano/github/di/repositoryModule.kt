@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.basekotlin.di
+package com.diegoferreiracaetano.github.di
 
 import com.diegoferreiracaetano.data.pull.PullImpRepository
 import com.diegoferreiracaetano.data.repo.RepoImpRepository

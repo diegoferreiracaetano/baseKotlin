@@ -1,11 +1,11 @@
-package com.diegoferreiracaetano.basekotlin.ui.repo.adapter
+package com.diegoferreiracaetano.github.ui.repo.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.basekotlin.ui.NetworkStatusViewHolder
-import com.diegoferreiracaetano.basekotlin.R
+import com.diegoferreiracaetano.github.ui.NetworkStatusViewHolder
+import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.repo.Repo
 

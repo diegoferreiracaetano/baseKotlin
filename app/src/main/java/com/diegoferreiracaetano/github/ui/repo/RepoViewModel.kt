@@ -1,7 +1,6 @@
-package com.diegoferreiracaetano.basekotlin.ui.repo
+package com.diegoferreiracaetano.github.ui.repo
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList

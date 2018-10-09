@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.basekotlin.util
+package com.diegoferreiracaetano.github.util
 
 
 import android.util.Log

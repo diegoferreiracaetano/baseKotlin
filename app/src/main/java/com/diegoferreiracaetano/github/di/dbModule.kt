@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.basekotlin.di
+package com.diegoferreiracaetano.github.di
 
 import androidx.room.Room
 import com.diegoferreiracaetano.data.LocalDb

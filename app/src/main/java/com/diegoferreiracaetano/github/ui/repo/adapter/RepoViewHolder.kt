@@ -1,11 +1,11 @@
-package com.diegoferreiracaetano.basekotlin.ui.repo.adapter
+package com.diegoferreiracaetano.github.ui.repo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.basekotlin.databinding.ItemRepoBinding
-import com.diegoferreiracaetano.basekotlin.R
+import com.diegoferreiracaetano.github.databinding.ItemRepoBinding
+import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.domain.repo.Repo
 
 class RepoViewHolder(val binding: ItemRepoBinding) : RecyclerView.ViewHolder(binding.root) {

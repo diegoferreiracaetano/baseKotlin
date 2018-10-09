@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.basekotlin
+package com.diegoferreiracaetano.github
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.diegoferreiracaetano.basekotlin", appContext.packageName)
+        assertEquals("com.diegoferreiracaetano.github", appContext.packageName)
     }
 }

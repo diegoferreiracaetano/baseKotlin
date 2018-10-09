@@ -1,9 +1,9 @@
-package com.diegoferreiracaetano.basekotlin
+package com.diegoferreiracaetano.github
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.diegoferreiracaetano.basekotlin.ui.repo.RepoFragment
-import com.diegoferreiracaetano.basekotlin.R
+import com.diegoferreiracaetano.github.ui.repo.RepoFragment
+import com.diegoferreiracaetano.github.R
 
 class MainActivity : AppCompatActivity() {
 

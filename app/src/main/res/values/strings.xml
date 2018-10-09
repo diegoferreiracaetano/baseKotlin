@@ -4,6 +4,5 @@
     <string name="retry">Retry</string>
     <string name="error">Error</string>
     <string name="empty" />
-    <string name="name_repository">Name Repository</string>
     <string name="repository_name">Repository Name</string>
 </resources>

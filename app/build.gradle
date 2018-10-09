@@ -13,7 +13,7 @@ def test = rootProject.ext.testingLibraries;
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.diegoferreiracaetano.basekotlin"
+        applicationId "com.diegoferreiracaetano.github"
         minSdkVersion cfg.minSdk
         targetSdkVersion cfg.targetSdk
         versionCode cfg.versionCode

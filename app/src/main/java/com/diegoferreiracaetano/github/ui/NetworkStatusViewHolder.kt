@@ -1,11 +1,11 @@
-package com.diegoferreiracaetano.basekotlin.ui
+package com.diegoferreiracaetano.github.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.basekotlin.R
-import com.diegoferreiracaetano.basekotlin.databinding.ItemNetworkStateBinding
+import com.diegoferreiracaetano.github.R
+import com.diegoferreiracaetano.github.databinding.ItemNetworkStateBinding
 import com.diegoferreiracaetano.domain.NetworkState
 import kotlinx.android.synthetic.main.item_network_state.view.*
 

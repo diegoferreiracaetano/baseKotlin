@@ -1,6 +1,6 @@
-package com.diegoferreiracaetano.basekotlin.di
+package com.diegoferreiracaetano.github.di
 
-import com.diegoferreiracaetano.basekotlin.BuildConfig
+import com.diegoferreiracaetano.github.BuildConfig
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
