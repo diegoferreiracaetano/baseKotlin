@@ -38,26 +38,4 @@ class RepoFragment : Fragment(){
         }
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
-        val repoAdapter = RepoAdapter{
-            viewModel.retry()
-        }
-        recycleView.adapter = repoAdapter
-        val layout = LinearLayoutManager(this.context)
-        recycleView.layoutManager = layout
-
-        viewModel.result.observe(this, Observer {
-            repoAdapter.submitList(it)
-            recycleView.getLayoutManager()?.scrollToPosition(layout.findFirstVisibleItemPosition() -4);
-
-        })
-
-        viewModel.networkState.observe(this, Observer {
-            repoAdapter.setNetworkState(it)
-        })
-
-    }
 }

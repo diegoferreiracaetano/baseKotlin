@@ -1,6 +1,7 @@
 package com.diegoferreiracaetano.basekotlin.ui.repo
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -19,7 +20,7 @@ class RepoViewModel(private val getRepoInteractor: GetListRepoInteractor,
         val config = PagedList.Config.Builder()
                 .setPageSize(Constants.PAGE_SIZE)
                 .setInitialLoadSizeHint(Constants.PAGE_SIZE)
-                .setEnablePlaceholders(false)
+                .setEnablePlaceholders(true)
                 .build()
 
 
@@ -38,7 +39,7 @@ class RepoViewModel(private val getRepoInteractor: GetListRepoInteractor,
     }
 
     val networkState = callback.networkState
-    val initialLoad = callback.initialLoad
+    val initialLoad =  callback.initialLoad
 
     override fun onCleared() {
         super.onCleared()

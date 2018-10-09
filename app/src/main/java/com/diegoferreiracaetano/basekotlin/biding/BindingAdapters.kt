@@ -48,14 +48,16 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("imageUrl")
-    fun ImageView.setImageUrl(url: String) {
-        Glide.with(context)
-                .load(url)
-                .asBitmap()
-                .placeholder(context.getDrawable(R.drawable.ic_account))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .skipMemoryCache(true)
-                .into(this)
+    fun ImageView.setImageUrl(url: String?) {
+        if(!url.isNullOrEmpty()) {
+            Glide.with(context)
+                    .load(url)
+                    .asBitmap()
+                    .placeholder(context.getDrawable(R.drawable.ic_account))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .skipMemoryCache(true)
+                    .into(this)
+        }
     }
 
     @JvmStatic
