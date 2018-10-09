@@ -36,5 +36,4 @@ class RepoFragment : Fragment(){
         }
         return binding.root
     }
-
 }

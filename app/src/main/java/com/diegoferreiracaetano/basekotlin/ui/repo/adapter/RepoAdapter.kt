@@ -10,7 +10,7 @@ import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.repo.Repo
 
 class RepoAdapter(private val retryCallback: () -> Unit) :
-         PagedListAdapter<Repo, RecyclerView.ViewHolder>(DOG_COMPARATOR) {
+         PagedListAdapter<Repo, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     private var networkState: NetworkState? = null
 
@@ -45,27 +45,23 @@ class RepoAdapter(private val retryCallback: () -> Unit) :
     }
 
     fun setNetworkState(newNetworkState: NetworkState?) {
-        if (currentList != null) {
-            if (currentList!!.size != 0) {
-                val previousState = this.networkState
-                val hadExtraRow = hasExtraRow()
-                this.networkState = newNetworkState
-                val hasExtraRow = hasExtraRow()
-                if (hadExtraRow != hasExtraRow) {
-                    if (hadExtraRow) {
-                        notifyItemRemoved(super.getItemCount())
-                    } else {
-                        notifyItemInserted(super.getItemCount())
-                    }
-                } else if (hasExtraRow && previousState !== newNetworkState) {
-                    notifyItemChanged(itemCount - 1)
-                }
+        val previousState = this.networkState
+        val hadExtraRow = hasExtraRow()
+        this.networkState = newNetworkState
+        val hasExtraRow = hasExtraRow()
+        if (hadExtraRow != hasExtraRow) {
+            if (hadExtraRow) {
+                notifyItemRemoved(super.getItemCount())
+            } else {
+                notifyItemInserted(super.getItemCount())
             }
+        } else if (hasExtraRow && previousState !== newNetworkState) {
+            notifyItemChanged(itemCount - 1)
         }
     }
 
     companion object {
-        val DOG_COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
+        val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
             override fun areContentsTheSame(oldItem: Repo, newItem: Repo): Boolean =
                     oldItem == newItem
 

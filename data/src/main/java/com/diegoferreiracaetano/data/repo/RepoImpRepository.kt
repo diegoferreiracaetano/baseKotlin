@@ -27,8 +27,11 @@ class RepoImpRepository(private var dao: RepoDao,
     }
 
     override fun save(list: List<Repo>): Completable {
-        dao.save(list)
-        return Completable.complete()
+        return Completable.create {
+            val insert = dao.save(list)
+            if(insert.size == list.size)
+                it.onComplete()
+        }
     }
 
     override fun getTotal(): Single<Int> {

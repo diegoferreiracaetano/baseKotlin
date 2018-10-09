@@ -17,6 +17,6 @@ interface RepoDao {
     @Query("SELECT * FROM repo ORDER BY repo.starts DESC")
     fun getAll(): DataSource.Factory<Int, Repo>
 
-    @Query("SELECT COUNT() FROM repo")
+    @Query("SELECT COUNT(*) FROM repo")
     fun getTotal() : Single<Int>
 }
