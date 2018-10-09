@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
@@ -24,7 +25,6 @@ object BindingAdapters {
         items?.let {
             if(adapter == null)
                  adapter = RepoAdapter(retryCallback)
-
             (adapter as RepoAdapter).submitList(items)
             (adapter as RepoAdapter).setNetworkState(networkState)
         }
