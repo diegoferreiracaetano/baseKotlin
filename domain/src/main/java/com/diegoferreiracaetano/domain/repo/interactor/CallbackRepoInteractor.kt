@@ -8,7 +8,7 @@ import com.diegoferreiracaetano.domain.repo.Repo
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Action
-import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.observers.DisposableCompletableObserver
 
 class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveInicialCacheInteractor,
                              private val saveCacheInteractor: SaveCacheInteractor): PagedList.BoundaryCallback<Repo>() {
@@ -19,38 +19,46 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveInicial
     val networkState = MutableLiveData<NetworkState>()
 
     override fun onZeroItemsLoaded() {
+        disposable.add(saveInicialCacheInteractor.execute(SaveInicialCacheInteractor.Request(1))
+                .subscribeWith(object : DisposableCompletableObserver() {
+                    override fun onStart() {
+                        super.onStart()
+                        initialLoad.postValue(NetworkState.LOADING)
+                        networkState.postValue(NetworkState.LOADING)
+                    }
 
-        initialLoad.postValue(NetworkState.LOADING)
-        networkState.postValue(NetworkState.LOADING)
-
-       saveInicialCacheInteractor.execute(SaveInicialCacheInteractor.Request(1))
-                .subscribeBy (
-                    onComplete = {
-                        initialLoad.postValue(NetworkState.LOADED)
-                        networkState.postValue(NetworkState.LOADED)
-                    },
-                    onError =  {
-                        val erro = NetworkState.error(it.message)
+                    override fun onError(t: Throwable) {
+                        val erro = NetworkState.error(t.message)
                         initialLoad.postValue(erro)
                         networkState.postValue(erro)
                         setRetry(Action { onZeroItemsLoaded() })
-                    })
+                    }
+
+                    override fun onComplete() {
+                        initialLoad.postValue(NetworkState.LOADED)
+                        networkState.postValue(NetworkState.LOADED)
+                    }
+                }))
     }
 
-
     override fun onItemAtEndLoaded(repo: Repo) {
-        networkState.postValue(NetworkState.LOADING)
+        disposable.add(saveCacheInteractor.execute(SaveCacheInteractor.Request(Constants.PAGE_SIZE))
+                .subscribeWith(object : DisposableCompletableObserver() {
+                    override fun onStart() {
+                        super.onStart()
+                        networkState.postValue(NetworkState.LOADING)
+                    }
 
-        saveCacheInteractor.execute(SaveCacheInteractor.Request(Constants.PAGE_SIZE))
-                .subscribeBy(
-                        onComplete = {
-                            networkState.postValue(NetworkState.LOADED)
-                        },
-                        onError = {
-                            val erro = NetworkState.error(it.message)
-                            networkState.postValue(erro)
-                            setRetry(Action { onItemAtEndLoaded(repo) })
-                        })
+                    override fun onError(t: Throwable) {
+                        val erro = NetworkState.error(t.message)
+                        networkState.postValue(erro)
+                        setRetry(Action { onItemAtEndLoaded(repo) })
+                    }
+
+                    override fun onComplete() {
+                        networkState.postValue(NetworkState.LOADED)
+                    }
+                }))
     }
 
     fun retry() {
