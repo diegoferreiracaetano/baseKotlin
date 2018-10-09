@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0-alpha12'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha06"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -44,6 +45,7 @@ ext {
             recyclerview                : '1.0.0',
             cardView                    : '1.0.0',
             swipe                       : '1.0.0',
+            nav_version                 : '1.0.0-alpha06',
             extensions                  : '2.0.0',
             koin                        : '1.0.0-beta-3',
             retrofit                    : '2.4.0',
