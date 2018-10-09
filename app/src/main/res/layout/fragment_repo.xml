@@ -29,9 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
-                app:setAdapter="@{viewModel.result}"
-                app:setNetworkState="@{viewModel.networkState}"
-                app:retryCallback="@{()-> viewModel.retry()}"
                 tools:listitem="@layout/item_repo" />
 
 

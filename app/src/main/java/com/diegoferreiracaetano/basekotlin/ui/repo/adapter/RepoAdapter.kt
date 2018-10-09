@@ -66,7 +66,7 @@ class RepoAdapter(private val retryCallback: () -> Unit) :
                     oldItem == newItem
 
             override fun areItemsTheSame(oldItem: Repo, newItem: Repo): Boolean =
-                    oldItem.id == newItem.id
+                    oldItem.starts == newItem.starts
         }
     }
 }

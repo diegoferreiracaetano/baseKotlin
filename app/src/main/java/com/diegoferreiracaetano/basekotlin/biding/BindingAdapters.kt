@@ -23,10 +23,7 @@ object BindingAdapters {
     @BindingAdapter("setAdapter","retryCallback","setNetworkState", requireAll= false)
     fun RecyclerView.setReviewAdapter(items: PagedList<Repo>?, retryCallback: () -> Unit, networkState: NetworkState?) {
         items?.let {
-            if(adapter == null)
-                 adapter = RepoAdapter(retryCallback)
-            (adapter as RepoAdapter).submitList(items)
-            (adapter as RepoAdapter).setNetworkState(networkState)
+
         }
     }
 
