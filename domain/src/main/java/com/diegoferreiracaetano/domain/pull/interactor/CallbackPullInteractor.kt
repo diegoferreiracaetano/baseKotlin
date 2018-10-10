@@ -30,7 +30,6 @@ class CallbackPullInteractor(private val saveInicialInteractor: SavePullInicialI
                       override fun onStart() {
                           super.onStart()
                           initialLoad.postValue(NetworkState.LOADING)
-                          networkState.postValue(NetworkState.LOADING)
                       }
 
                       override fun onError(t: Throwable) {

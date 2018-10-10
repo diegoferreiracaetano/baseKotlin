@@ -12,11 +12,10 @@ object ViewBindingAdapters{
     fun RecyclerView.setReviewAdapter(items: PagedList<Repo>?, retryCallback: () -> Unit,
                                       listener: RepoViewHolder.OnItemClickListener,
                                       networkState: NetworkState?) {
-        items?.let {
-            if(adapter == null)
-                adapter = RepoAdapter(retryCallback,listener)
+        if (adapter == null)
+            adapter = RepoAdapter(retryCallback, listener)
+
             (adapter as RepoAdapter).submitList(items)
             (adapter as RepoAdapter).setNetworkState(networkState)
-        }
     }
 }

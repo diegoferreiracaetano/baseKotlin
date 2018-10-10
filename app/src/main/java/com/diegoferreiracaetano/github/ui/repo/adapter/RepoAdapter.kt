@@ -46,23 +46,21 @@ class RepoAdapter(private val retryCallback: () -> Unit,
     }
 
     fun setNetworkState(newNetworkState: NetworkState?) {
-        if (currentList != null) {
-            if (currentList!!.size != 0) {
-                val previousState = this.networkState
-                val hadExtraRow = hasExtraRow()
-                this.networkState = newNetworkState
-                val hasExtraRow = hasExtraRow()
-                if (hadExtraRow != hasExtraRow) {
-                    if (hadExtraRow) {
-                        notifyItemRemoved(super.getItemCount())
-                    } else {
-                        notifyItemInserted(super.getItemCount())
-                    }
-                } else if (hasExtraRow && previousState !== newNetworkState) {
-                    notifyItemChanged(itemCount - 1)
-                }
+
+        val previousState = this.networkState
+        val hadExtraRow = hasExtraRow()
+        this.networkState = newNetworkState
+        val hasExtraRow = hasExtraRow()
+        if (hadExtraRow != hasExtraRow) {
+            if (hadExtraRow) {
+                notifyItemRemoved(super.getItemCount())
+            } else {
+                notifyItemInserted(super.getItemCount())
             }
+        } else if (hasExtraRow && previousState !== newNetworkState) {
+            notifyItemChanged(itemCount - 1)
         }
+
     }
 
     companion object {

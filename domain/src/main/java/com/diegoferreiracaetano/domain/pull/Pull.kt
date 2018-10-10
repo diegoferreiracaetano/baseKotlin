@@ -14,6 +14,8 @@ data class Pull(@PrimaryKey
                 @SerializedName("created_at")
                 val date:Date,
                 val body:String?,
+                @SerializedName("html_url")
+                val url:String,
                 @SerializedName("user")
                 @Embedded(prefix = "user_")
                 var owner: Owner,
@@ -21,5 +23,5 @@ data class Pull(@PrimaryKey
                 var ownerName: String,
                 @ColumnInfo(name = "repo_name")
                 var repoName: String): Serializable {
-    constructor():this(0,"",Date(),"", Owner(), "","")
+    constructor():this(0,"",Date(),"","", Owner(), "","")
 }

@@ -54,8 +54,8 @@ class PullViewModel(private val getPullInteractor: GetListPullInteractor,
         callback.onZeroItemsLoaded()
     }
 
-    val networkState = Transformations.switchMap(result,{callback.networkState})
-    val initialLoad =  Transformations.switchMap(result,{callback.initialLoad})
+    val networkState = callback.networkState
+    val initialLoad =  callback.initialLoad
 
     override fun onCleared() {
         super.onCleared()

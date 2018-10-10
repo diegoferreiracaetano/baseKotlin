@@ -24,7 +24,6 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoIni
                     override fun onStart() {
                         super.onStart()
                         initialLoad.postValue(NetworkState.LOADING)
-                        networkState.postValue(NetworkState.LOADING)
                     }
 
                     override fun onError(t: Throwable) {

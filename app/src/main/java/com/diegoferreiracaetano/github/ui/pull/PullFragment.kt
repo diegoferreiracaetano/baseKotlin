@@ -12,10 +12,14 @@ import com.diegoferreiracaetano.domain.pull.Pull
 import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.github.databinding.FragmentPullBinding
 import com.diegoferreiracaetano.github.databinding.FragmentRepoBinding
+import com.diegoferreiracaetano.github.ui.MainActivity
 import com.diegoferreiracaetano.github.ui.pull.adapter.PullViewHolder
 import kotlinx.android.synthetic.main.fragment_pull.*
 import kotlinx.android.synthetic.main.item_network_state.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.content.Intent
+import android.net.Uri
+
 
 class PullFragment : Fragment(),PullViewHolder.OnItemClickListener {
     val viewModel: PullViewModel by viewModel()
@@ -37,12 +41,14 @@ class PullFragment : Fragment(),PullViewHolder.OnItemClickListener {
         if (arguments != null) {
             val repoName = arguments!!.getString(EXTRA_REPO_NAME)
             val ownerName = arguments!!.getString(EXTRA_OWNER_NAME)
+            (activity as MainActivity).supportActionBar?.subtitle = repoName.capitalize()
             viewModel.setParams(Pair(ownerName,repoName))
         }
     }
 
     override fun onItemClick(view: View, pull: Pull) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(pull.url))
+        startActivity(browserIntent)
     }
 
 

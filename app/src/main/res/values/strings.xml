@@ -6,5 +6,6 @@
     <string name="repository_name">Repository Name</string>
     <string name="starts">starts</string>
     <string name="forks">forks</string>
+    <string name="pull_request">Pull Request</string>
     <string name="dateFormat">%1$td/%1$tm/%1$tY - %1$tH:%1$tM</string>
 </resources>

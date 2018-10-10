@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import com.diegoferreiracaetano.domain.repo.Repo
 import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.github.databinding.FragmentRepoBinding
+import com.diegoferreiracaetano.github.ui.MainActivity
 import com.diegoferreiracaetano.github.ui.pull.PullFragment
 import com.diegoferreiracaetano.github.ui.repo.adapter.RepoViewHolder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +29,11 @@ class RepoFragment : Fragment(),RepoViewHolder.OnItemClickListener{
         binding.viewModel = viewModel
         binding.callback = this
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as MainActivity).supportActionBar?.subtitle = ""
     }
 
     override fun onItemClick(view: View,repo: Repo) {
