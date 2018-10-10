@@ -6,6 +6,9 @@
         <variable
             name="viewModel"
             type="com.diegoferreiracaetano.github.ui.repo.RepoViewModel"/>
+        <variable
+            name="listener"
+            type="com.diegoferreiracaetano.github.ui.repo.adapter.RepoViewHolder.OnItemClickListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -29,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:setAdapter="@{viewModel.result}"
+                app:listener="@{listener}"
                 android:layout_marginBottom="100dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:setNetworkState="@{viewModel.networkState}"
@@ -37,5 +41,6 @@
 
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

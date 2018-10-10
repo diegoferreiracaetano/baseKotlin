@@ -13,4 +13,5 @@ interface PullRepository{
     fun getTotal(): Single<Int>
 
     fun save(list: List<Pull>): Completable
+
 }

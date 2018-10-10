@@ -6,6 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.diegoferreiracaetano.domain.owner.Owner
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity(tableName = "repo",
         indices = arrayOf(Index(value = ["starts"])))
@@ -19,7 +20,7 @@ data class Repo (
         @SerializedName("forks_count")
         var forks:Int,
         @Embedded(prefix = "owner_")
-        var owner: Owner) {
+        var owner: Owner) :Serializable{
         constructor():this(0,"","",0,0,Owner())
 
 }

@@ -5,7 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
-interface RepoRepository{
+interface RepoRepository {
     fun getList(page:Int): Flowable<List<Repo>>
 
     fun getList(): DataSource.Factory<Int, Repo>

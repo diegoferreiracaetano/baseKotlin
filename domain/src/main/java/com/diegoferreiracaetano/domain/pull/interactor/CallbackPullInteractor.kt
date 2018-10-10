@@ -1,17 +1,17 @@
-package com.diegoferreiracaetano.domain.repo.interactor
+package com.diegoferreiracaetano.domain.pull.interactor
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
-import com.diegoferreiracaetano.domain.Constants
 import com.diegoferreiracaetano.domain.NetworkState
-import com.diegoferreiracaetano.domain.repo.Repo
+import com.diegoferreiracaetano.domain.pull.Pull
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Action
 import io.reactivex.observers.DisposableCompletableObserver
 
-class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoInicialInteractor,
-                             private val saveCacheInteractor: SaveRepoPageInteractor): PagedList.BoundaryCallback<Repo>() {
+class CallbackPullInteractor(private val ownerName:String,
+                             private val repoName:String,
+                             private val saveInicialInteractor: SavePullInicialInteractor): PagedList.BoundaryCallback<Pull>() {
 
     private var disposable = CompositeDisposable()
     private var retryCompletable: Completable? = null
@@ -19,7 +19,7 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoIni
     val networkState = MutableLiveData<NetworkState>()
 
     override fun onZeroItemsLoaded() {
-        disposable.add(saveInicialCacheInteractor.execute(SaveRepoInicialInteractor.Request(1))
+        disposable.add(saveInicialInteractor.execute(SavePullInicialInteractor.Request(ownerName,repoName))
                 .subscribeWith(object : DisposableCompletableObserver() {
                     override fun onStart() {
                         super.onStart()
@@ -41,8 +41,8 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoIni
                 }))
     }
 
-    override fun onItemAtEndLoaded(repo: Repo) {
-        disposable.add(saveCacheInteractor.execute(SaveRepoPageInteractor.Request(Constants.PAGE_SIZE))
+    override fun onItemAtEndLoaded(pull: Pull) {
+        disposable.add(saveInicialInteractor.execute(SavePullInicialInteractor.Request(ownerName,repoName))
                 .subscribeWith(object : DisposableCompletableObserver() {
                     override fun onStart() {
                         super.onStart()
@@ -52,7 +52,7 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoIni
                     override fun onError(t: Throwable) {
                         val erro = NetworkState.error(t.message)
                         networkState.postValue(erro)
-                        setRetry(Action { onItemAtEndLoaded(repo) })
+                        setRetry(Action { onItemAtEndLoaded(pull) })
                     }
 
                     override fun onComplete() {

@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.diegoferreiracaetano.domain.owner.Owner
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 @Entity(tableName = "pull")
@@ -16,6 +17,6 @@ data class Pull(@PrimaryKey
                 val body:String,
                 @SerializedName("user")
                 @Embedded(prefix = "user_")
-                var owner: Owner){
+                var owner: Owner): Serializable {
     constructor():this(0,"",Date(),"", Owner())
 }

@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="repo"
-            type="com.diegoferreiracaetano.domain.repo.Repo" />
+            name="pull"
+            type="com.diegoferreiracaetano.domain.pull.Pull" />
 
     </data>
 
@@ -34,51 +34,51 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/owner_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="8dp"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{repo.owner.photo}"
+                    app:imageUrl="@{pull.owner.photo}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/pull_body" />
 
                 <TextView
                     android:id="@+id/owner_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
                     android:gravity="start"
                     android:maxLines="1"
-                    android:text="@{repo.owner.name}"
+                    android:text="@{pull.owner.name}"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/owner_image"
-                    app:layout_constraintStart_toStartOf="@+id/owner_image"
-                    app:layout_constraintTop_toBottomOf="@+id/owner_image"
+                    app:layout_constraintStart_toEndOf="@+id/owner_image"
+                    app:layout_constraintTop_toBottomOf="@+id/pull_body"
                     tools:text="@tools:sample/first_names" />
 
                 <TextView
                     android:id="@+id/pull_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:maxLines="1"
-                    android:text="@{repo.name}"
+                    android:text="@{pull.title}"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/owner_image"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/repository_name" />
+                    tools:text="@tools:sample/lorem" />
 
                 <TextView
                     android:id="@+id/pull_body"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="29dp"
                     android:layout_marginEnd="8dp"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="@{repo.description}"
+                    android:text="@{pull.body}"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/pull_title"
@@ -89,45 +89,13 @@
                     android:id="@+id/pull_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@{String.valueOf(repo.starts)}"
+                    android:text="@{@string/dateFormat(pull.date)}"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pull_body"
-                    tools:text="@tools:sample/us_zipcodes" />
-
-                <TextView
-                    android:id="@+id/forks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{String.valueOf(repo.forks)}"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/pull_body"
-                    tools:text="@tools:sample/us_zipcodes" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="3dp"
-                    android:contentDescription="@string/starts"
-                    app:layout_constraintEnd_toStartOf="@+id/pull_date"
-                    app:layout_constraintTop_toBottomOf="@+id/pull_body"
-                    app:srcCompat="@drawable/ic_star" />
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/forks"
-                    app:layout_constraintEnd_toStartOf="@+id/forks"
-                    app:layout_constraintTop_toBottomOf="@+id/pull_body"
-                    app:srcCompat="@drawable/ic_git_branch" />
+                    tools:text="@tools:sample/date/ddmmyy" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

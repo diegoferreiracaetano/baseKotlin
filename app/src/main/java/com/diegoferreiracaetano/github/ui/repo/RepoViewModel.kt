@@ -22,7 +22,6 @@ class RepoViewModel(private val getRepoInteractor: GetListRepoInteractor,
                 .setEnablePlaceholders(true)
                 .build()
 
-
         result = LivePagedListBuilder<Int, Repo>(getRepoInteractor.execute(), config)
                 .setBoundaryCallback(callback)
                 .build()
@@ -44,4 +43,6 @@ class RepoViewModel(private val getRepoInteractor: GetListRepoInteractor,
         super.onCleared()
         callback.clear()
     }
+
+
 }

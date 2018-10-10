@@ -14,17 +14,18 @@ import com.diegoferreiracaetano.domain.repo.Repo
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.diegoferreiracaetano.github.R
-
+import com.diegoferreiracaetano.github.ui.repo.adapter.RepoViewHolder
 
 object BindingAdapters {
 
     @JvmStatic
-    @BindingAdapter("setAdapter","retryCallback","setNetworkState", requireAll= false)
-    fun RecyclerView.setReviewAdapter(items: PagedList<Repo>?, retryCallback: () -> Unit, networkState: NetworkState?) {
+    @BindingAdapter("setAdapter","retryCallback","listener","setNetworkState", requireAll= false)
+    fun RecyclerView.setReviewAdapter(items: PagedList<Repo>?, retryCallback: () -> Unit,
+                                      listener: RepoViewHolder.OnItemClickListener,
+                                      networkState: NetworkState?) {
  		items?.let {
             if(adapter == null)
-                 adapter = RepoAdapter(retryCallback)
-
+                 adapter = RepoAdapter(retryCallback,listener)
             (adapter as RepoAdapter).submitList(items)
             (adapter as RepoAdapter).setNetworkState(networkState)
         }

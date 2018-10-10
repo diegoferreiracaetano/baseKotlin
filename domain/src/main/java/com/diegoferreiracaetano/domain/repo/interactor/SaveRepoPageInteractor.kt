@@ -4,7 +4,7 @@ import com.diegoferreiracaetano.domain.InteractorCompletable
 import com.diegoferreiracaetano.domain.repo.RepoRepository
 import io.reactivex.Completable
 
-class SaveCacheInteractor(private val repository: RepoRepository): InteractorCompletable<SaveCacheInteractor.Request>() {
+class SaveRepoPageInteractor(private val repository: RepoRepository): InteractorCompletable<SaveRepoPageInteractor.Request>() {
 
     override fun create(request: Request): Completable {
         return repository.getTotal()
