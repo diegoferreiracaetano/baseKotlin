@@ -29,7 +29,7 @@ class PullViewModel(private val getPullInteractor: GetListPullInteractor,
     }
 
     fun getList(pair: Pair<String,String>) : LiveData<PagedList<Pull>>  {
-        callback.insert(pair)
+        callback.setParam(pair)
         val config = PagedList.Config.Builder()
                 .setPageSize(Constants.PAGE_SIZE)
                 .setInitialLoadSizeHint(Constants.PAGE_SIZE)

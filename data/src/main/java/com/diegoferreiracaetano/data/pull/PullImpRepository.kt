@@ -17,8 +17,8 @@ class PullImpRepository(private var dao: PullDao,
 
     private val api = retrofit.create(GithubApi::class.java)
 
-    override fun getListRemote(owner:String,repo:String): Flowable<List<Pull>> {
-        return api.getPull(owner,repo)
+    override fun getList(owner:String,repo:String,page : Int): Flowable<List<Pull>> {
+        return api.getPull(owner,repo,page)
                 .flatMap{Flowable.fromIterable(it)}
                 .flatMapMaybe{Maybe.just(it.copy(ownerName = owner,repoName = repo))}
                 .toList()
@@ -34,4 +34,7 @@ class PullImpRepository(private var dao: PullDao,
         return Completable.complete()
     }
 
+    override fun getTotal(): Single<Int> {
+        return dao.getTotal()
+    }
 }

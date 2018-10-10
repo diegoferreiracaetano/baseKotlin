@@ -6,6 +6,7 @@ import com.diegoferreiracaetano.domain.pull.PullRepository
 import com.diegoferreiracaetano.domain.pull.interactor.CallbackPullInteractor
 import com.diegoferreiracaetano.domain.pull.interactor.GetListPullInteractor
 import com.diegoferreiracaetano.domain.pull.interactor.SavePullInicialInteractor
+import com.diegoferreiracaetano.domain.pull.interactor.SavePullPageInteractor
 import com.diegoferreiracaetano.domain.repo.RepoRepository
 import com.diegoferreiracaetano.domain.repo.interactor.CallbackRepoInteractor
 import com.diegoferreiracaetano.domain.repo.interactor.GetListRepoInteractor
@@ -24,8 +25,10 @@ val repositoryModule : Module = module {
     single { CallbackRepoInteractor(get(),get()) }
     single { SaveRepoInicialInteractor(get())}
     single { SaveRepoPageInteractor(get()) }
-    single { SavePullInicialInteractor(get()) }
+
     single { GetListPullInteractor(get()) }
-    single { CallbackPullInteractor(get()) }
+    single { CallbackPullInteractor(get(),get()) }
+    single { SavePullInicialInteractor(get()) }
+    single { SavePullPageInteractor(get()) }
 
 }

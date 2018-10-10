@@ -15,6 +15,9 @@ interface PullDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(entityLocals: List<Pull>): List<Long>
 
-    @Query("SELECT * FROM pull WHERE pull.owner_name = :ownerName AND pull.repo_name = :repoName ORDER BY pull.id ASC")
+    @Query("SELECT * FROM pull WHERE pull.owner_name = :ownerName AND pull.repo_name = :repoName ORDER BY pull.id DESC")
     fun getAll(ownerName:String,repoName:String): DataSource.Factory<Int, Pull>
+
+    @Query("SELECT COUNT(*) FROM repo")
+    fun getTotal() : Single<Int>
 }

@@ -8,10 +8,10 @@ import io.reactivex.Completable
 class SavePullInicialInteractor(private val repository: PullRepository): InteractorCompletable<SavePullInicialInteractor.Request>() {
 
     override fun create(request: Request): Completable {
-        return repository.getListRemote(request.owner,request.repo)
+        return repository.getList(request.owner,request.repo,request.page)
                 .flatMapCompletable { repository.save(it) }
     }
 
 
-    data class Request(val owner: String,val repo:String) : InteractorCompletable.Request()
+    data class Request(val owner: String,val repo:String,val page: Int) : InteractorCompletable.Request()
 }
