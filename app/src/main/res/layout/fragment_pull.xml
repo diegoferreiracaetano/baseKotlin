@@ -7,6 +7,9 @@
             name="viewModel"
             type="com.diegoferreiracaetano.github.ui.pull.PullViewModel"/>
         <variable
+            name="status"
+            type="com.diegoferreiracaetano.domain.Status" />
+        <variable
             name="callback"
             type="com.diegoferreiracaetano.github.ui.pull.adapter.PullViewHolder.OnItemClickListener" />
     </data>
@@ -40,6 +43,21 @@
 
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/not_found"
+            android:textSize="20sp"
+            app:isVisible="@{viewModel.networkState.status == status.SUCCESS &amp;&amp; viewModel.result.size() == 0}"
+            app:layout_constraintTop_toTopOf="@+id/swipeLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

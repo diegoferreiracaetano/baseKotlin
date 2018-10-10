@@ -13,11 +13,10 @@ object ViewBindingAdapters{
     fun RecyclerView.setReviewAdapter(items: PagedList<Pull>?, retry: () -> Unit,
                                       callback: PullViewHolder.OnItemClickListener,
                                       networkState: NetworkState?) {
-            if(adapter == null)
-                adapter = PullAdapter(retry,callback)
-
-            (adapter as PullAdapter).submitList(items)
-            (adapter as PullAdapter).setNetworkState(networkState)
+        if(adapter == null)
+            adapter = PullAdapter(retry,callback)
+        (adapter as PullAdapter).submitList(items)
+        (adapter as PullAdapter).setNetworkState(networkState)
 
     }
 }

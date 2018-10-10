@@ -8,4 +8,5 @@
     <string name="forks">forks</string>
     <string name="pull_request">Pull Request</string>
     <string name="dateFormat">%1$td/%1$tm/%1$tY - %1$tH:%1$tM</string>
+    <string name="not_found">Nenhum registro</string>
 </resources>
