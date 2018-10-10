@@ -7,7 +7,7 @@
             name="viewModel"
             type="com.diegoferreiracaetano.github.ui.repo.RepoViewModel"/>
         <variable
-            name="listener"
+            name="callback"
             type="com.diegoferreiracaetano.github.ui.repo.adapter.RepoViewHolder.OnItemClickListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="10dp"
             app:onRefreshListener="@{() -> viewModel.refresh()}"
             app:setLoad="@{viewModel.initialLoad}">
 
@@ -31,12 +32,11 @@
                 android:id="@+id/recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:setAdapter="@{viewModel.result}"
-                app:listener="@{listener}"
-                android:layout_marginBottom="100dp"
+                app:repoAdapter="@{viewModel.result}"
+                app:repoCallback="@{callback}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:setNetworkState="@{viewModel.networkState}"
-                app:retryCallback="@{()-> viewModel.retry()}"
+                app:repoNetworkEvents="@{viewModel.networkState}"
+                app:repoRetry="@{()-> viewModel.retry()}"
                 tools:listitem="@layout/item_repo" />
 
 

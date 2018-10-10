@@ -19,19 +19,6 @@ import com.diegoferreiracaetano.github.ui.repo.adapter.RepoViewHolder
 object BindingAdapters {
 
     @JvmStatic
-    @BindingAdapter("setAdapter","retryCallback","listener","setNetworkState", requireAll= false)
-    fun RecyclerView.setReviewAdapter(items: PagedList<Repo>?, retryCallback: () -> Unit,
-                                      listener: RepoViewHolder.OnItemClickListener,
-                                      networkState: NetworkState?) {
- 		items?.let {
-            if(adapter == null)
-                 adapter = RepoAdapter(retryCallback,listener)
-            (adapter as RepoAdapter).submitList(items)
-            (adapter as RepoAdapter).setNetworkState(networkState)
-        }
-    }
-
-    @JvmStatic
     @BindingAdapter("isVisible")
     fun View.isVisible(boolean: Boolean) {
         visibility = if(boolean) View.VISIBLE else View.GONE

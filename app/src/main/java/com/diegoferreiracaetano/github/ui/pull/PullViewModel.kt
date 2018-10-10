@@ -3,6 +3,7 @@ package com.diegoferreiracaetano.github.ui.pull
 import android.provider.SyncStateContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.Transformations.switchMap
 import androidx.lifecycle.ViewModel
@@ -17,29 +18,33 @@ import com.diegoferreiracaetano.domain.repo.Repo
 import com.diegoferreiracaetano.domain.repo.interactor.CallbackRepoInteractor
 
 class PullViewModel(private val getPullInteractor: GetListPullInteractor,
-                    private val savePullInicialInteractor: SavePullInicialInteractor) : ViewModel() {
+                    private val callback :CallbackPullInteractor) : ViewModel() {
 
 
-    private val params = MutableLiveData<Pair<String,String>>()
-    private var callback :CallbackPullInteractor
+    private var params = MutableLiveData<Pair<String,String>>()
+    val result : LiveData<PagedList<Pull>>
 
-    private var repoResult = map(params, {
-         callback = CallbackPullInteractor(it.first,it.second,savePullInicialInteractor)
-         val config = PagedList.Config.Builder()
+    init{
+        result = Transformations.switchMap(params) { getList(it) }
+    }
+
+    fun getList(pair: Pair<String,String>) : LiveData<PagedList<Pull>>  {
+        callback.insert(pair)
+        val config = PagedList.Config.Builder()
                 .setPageSize(Constants.PAGE_SIZE)
                 .setInitialLoadSizeHint(Constants.PAGE_SIZE)
                 .setEnablePlaceholders(true)
                 .build()
 
-         LivePagedListBuilder<Int, Pull>(getPullInteractor.execute(), config)
+        return LivePagedListBuilder<Int, Pull>(getPullInteractor.execute(GetListPullInteractor.Request(pair.first,pair.second)), config)
                 .setBoundaryCallback(callback)
                 .build()
-    })
+    }
 
+    fun setParams(pair: Pair<String,String>){
+        this.params.value = pair
+    }
 
-    val posts = switchMap(repoResult, { it.pagedList })!!
-    val networkState = switchMap(repoResult, { it.networkState })!!
-    val refreshState = switchMap(repoResult, { it.refreshState })!!
     fun retry() {
         callback.retry()
     }
@@ -49,8 +54,8 @@ class PullViewModel(private val getPullInteractor: GetListPullInteractor,
         callback.onZeroItemsLoaded()
     }
 
-    val networkState = callback.networkState
-    val initialLoad =  callback.initialLoad
+    val networkState = Transformations.switchMap(result,{callback.networkState})
+    val initialLoad =  Transformations.switchMap(result,{callback.initialLoad})
 
     override fun onCleared() {
         super.onCleared()

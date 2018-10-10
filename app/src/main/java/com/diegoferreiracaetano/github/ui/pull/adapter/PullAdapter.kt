@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.github.ui.repo.adapter
+package com.diegoferreiracaetano.github.ui.pull.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.github.ui.NetworkStatusViewHolder
 import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.domain.NetworkState
-import com.diegoferreiracaetano.domain.repo.Repo
+import com.diegoferreiracaetano.domain.pull.Pull
 
-class RepoAdapter(private val retryCallback: () -> Unit,
-                  private val listener: RepoViewHolder.OnItemClickListener) :
-         PagedListAdapter<Repo, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class PullAdapter(private val retryCallback: () -> Unit,
+                  private val listener: PullViewHolder.OnItemClickListener) :
+         PagedListAdapter<Pull, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     private var networkState: NetworkState? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
        return when (viewType) {
-            R.layout.item_repo -> RepoViewHolder.create(parent,listener)
+            R.layout.item_pull -> PullViewHolder.create(parent,listener)
             R.layout.item_network_state -> NetworkStatusViewHolder.create(parent,retryCallback)
             else -> throw IllegalArgumentException("unknown view type")
         }
@@ -25,7 +25,7 @@ class RepoAdapter(private val retryCallback: () -> Unit,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.item_repo -> (holder as RepoViewHolder).bindTo(getItem(position))
+            R.layout.item_pull -> (holder as PullViewHolder).bindTo(getItem(position))
             R.layout.item_network_state ->(holder as NetworkStatusViewHolder).bindTo(networkState)
         }
     }
@@ -40,7 +40,7 @@ class RepoAdapter(private val retryCallback: () -> Unit,
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_repo
+            R.layout.item_pull
 
         }
     }
@@ -66,11 +66,11 @@ class RepoAdapter(private val retryCallback: () -> Unit,
     }
 
     companion object {
-        val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
-            override fun areContentsTheSame(oldItem: Repo, newItem: Repo): Boolean =
+        val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Pull>() {
+            override fun areContentsTheSame(oldItem: Pull, newItem: Pull): Boolean =
                     oldItem == newItem
 
-            override fun areItemsTheSame(oldItem: Repo, newItem: Repo): Boolean =
+            override fun areItemsTheSame(oldItem: Pull, newItem: Pull): Boolean =
                     oldItem.id == newItem.id
         }
     }

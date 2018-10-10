@@ -1,9 +1,8 @@
 package com.diegoferreiracaetano.domain.pull
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.diegoferreiracaetano.domain.owner.Owner
+import com.diegoferreiracaetano.domain.repo.Repo
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.*
@@ -14,9 +13,13 @@ data class Pull(@PrimaryKey
                 val title:String,
                 @SerializedName("created_at")
                 val date:Date,
-                val body:String,
+                val body:String?,
                 @SerializedName("user")
                 @Embedded(prefix = "user_")
-                var owner: Owner): Serializable {
-    constructor():this(0,"",Date(),"", Owner())
+                var owner: Owner,
+                @ColumnInfo(name = "owner_name")
+                var ownerName: String,
+                @ColumnInfo(name = "repo_name")
+                var repoName: String): Serializable {
+    constructor():this(0,"",Date(),"", Owner(), "","")
 }

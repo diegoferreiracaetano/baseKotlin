@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.diegoferreiracaetano.domain.pull.Pull
+import com.diegoferreiracaetano.domain.repo.Repo
 import io.reactivex.Single
 
 @Dao
@@ -14,10 +15,6 @@ interface PullDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(entityLocals: List<Pull>): List<Long>
 
-    @Query("SELECT * FROM pull " +
-            "ORDER BY pull.id ASC")
-    fun getAll(): DataSource.Factory<Int, Pull>
-
-    @Query("SELECT COUNT() FROM pull")
-    fun getTotal() : Single<Int>
+    @Query("SELECT * FROM pull WHERE pull.owner_name = :ownerName AND pull.repo_name = :repoName ORDER BY pull.id ASC")
+    fun getAll(ownerName:String,repoName:String): DataSource.Factory<Int, Pull>
 }
