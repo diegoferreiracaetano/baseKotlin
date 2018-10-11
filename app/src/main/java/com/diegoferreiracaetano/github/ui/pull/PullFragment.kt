@@ -1,24 +1,20 @@
 package com.diegoferreiracaetano.github.ui.pull
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.diegoferreiracaetano.domain.pull.Pull
-
 import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.github.databinding.FragmentPullBinding
-import com.diegoferreiracaetano.github.databinding.FragmentRepoBinding
 import com.diegoferreiracaetano.github.ui.MainActivity
 import com.diegoferreiracaetano.github.ui.pull.adapter.PullViewHolder
-import kotlinx.android.synthetic.main.fragment_pull.*
-import kotlinx.android.synthetic.main.item_network_state.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import android.content.Intent
-import android.net.Uri
 
 
 class PullFragment : Fragment(),PullViewHolder.OnItemClickListener {

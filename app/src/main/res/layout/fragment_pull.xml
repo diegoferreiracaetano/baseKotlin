@@ -39,7 +39,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:pullNetworkEvents="@{viewModel.networkState}"
                 app:pullRetry="@{()-> viewModel.retry()}"
-                tools:listitem="@layout/item_repo" />
+                tools:listitem="@layout/item_pull" />
 
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

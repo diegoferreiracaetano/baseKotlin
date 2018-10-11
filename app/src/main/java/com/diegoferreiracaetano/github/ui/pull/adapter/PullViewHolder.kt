@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.github.databinding.ItemPullBinding
-import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.domain.pull.Pull
+import com.diegoferreiracaetano.github.R
+import com.diegoferreiracaetano.github.databinding.ItemPullBinding
 
 class PullViewHolder(val binding: ItemPullBinding, val listener: OnItemClickListener) : RecyclerView.ViewHolder(binding.root) {
 

@@ -3,18 +3,13 @@ package com.diegoferreiracaetano.github.biding
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.paging.PagedList
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.diegoferreiracaetano.github.ui.repo.adapter.RepoAdapter
 import com.diegoferreiracaetano.domain.NetworkState
-import com.diegoferreiracaetano.domain.repo.Repo
+import com.diegoferreiracaetano.github.R
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import com.diegoferreiracaetano.github.R
-import com.diegoferreiracaetano.github.ui.repo.adapter.RepoViewHolder
 
 object BindingAdapters {
 

@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.github.databinding.ItemNetworkStateBinding
-import com.diegoferreiracaetano.domain.NetworkState
-import kotlinx.android.synthetic.main.fragment_repo.view.*
 import kotlinx.android.synthetic.main.item_network_state.view.*
 
 class NetworkStatusViewHolder(val binding: ItemNetworkStateBinding,private val retryCallback: () -> Unit) : RecyclerView.ViewHolder(binding.root) {

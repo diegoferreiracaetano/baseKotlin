@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.github.databinding.ItemRepoBinding
-import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.domain.repo.Repo
+import com.diegoferreiracaetano.github.R
+import com.diegoferreiracaetano.github.databinding.ItemRepoBinding
 
 class RepoViewHolder(val binding: ItemRepoBinding,val listener: OnItemClickListener) : RecyclerView.ViewHolder(binding.root) {
 

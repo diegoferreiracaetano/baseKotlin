@@ -1,10 +1,8 @@
 package com.diegoferreiracaetano.domain.pull.interactor
 
 import androidx.paging.DataSource
-import com.diegoferreiracaetano.domain.InteractorCompletable
 import com.diegoferreiracaetano.domain.pull.Pull
 import com.diegoferreiracaetano.domain.pull.PullRepository
-import com.diegoferreiracaetano.domain.repo.Repo
 
 class GetListPullInteractor(private val repository: PullRepository){
 

@@ -2,7 +2,6 @@ package com.diegoferreiracaetano.domain.pull.interactor
 
 import com.diegoferreiracaetano.domain.InteractorCompletable
 import com.diegoferreiracaetano.domain.pull.PullRepository
-import com.diegoferreiracaetano.domain.repo.RepoRepository
 import io.reactivex.Completable
 
 class SavePullPageInteractor(private val repository: PullRepository): InteractorCompletable<SavePullPageInteractor.Request>() {

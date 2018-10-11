@@ -4,10 +4,10 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.github.ui.NetworkStatusViewHolder
-import com.diegoferreiracaetano.github.R
 import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.pull.Pull
+import com.diegoferreiracaetano.github.R
+import com.diegoferreiracaetano.github.ui.NetworkStatusViewHolder
 
 class PullAdapter(private val retryCallback: () -> Unit,
                   private val listener: PullViewHolder.OnItemClickListener) :

@@ -1,11 +1,10 @@
 package com.diegoferreiracaetano.github.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.diegoferreiracaetano.github.ui.repo.RepoFragment
 import com.diegoferreiracaetano.github.R
 
 

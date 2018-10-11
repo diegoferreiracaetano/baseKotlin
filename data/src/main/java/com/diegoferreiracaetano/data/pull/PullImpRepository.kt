@@ -4,12 +4,10 @@ import androidx.paging.DataSource
 import com.diegoferreiracaetano.data.api.GithubApi
 import com.diegoferreiracaetano.domain.pull.Pull
 import com.diegoferreiracaetano.domain.pull.PullRepository
-import com.diegoferreiracaetano.domain.repo.Repo
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.rxkotlin.subscribeBy
 import retrofit2.Retrofit
 
 class PullImpRepository(private var dao: PullDao,

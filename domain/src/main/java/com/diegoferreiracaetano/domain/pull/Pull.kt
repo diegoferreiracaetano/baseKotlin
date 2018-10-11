@@ -1,8 +1,10 @@
 package com.diegoferreiracaetano.domain.pull
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.diegoferreiracaetano.domain.owner.Owner
-import com.diegoferreiracaetano.domain.repo.Repo
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.*

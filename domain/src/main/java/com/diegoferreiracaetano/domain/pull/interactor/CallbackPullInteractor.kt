@@ -1,12 +1,10 @@
 package com.diegoferreiracaetano.domain.pull.interactor
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.paging.PagedList
 import com.diegoferreiracaetano.domain.Constants
 import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.pull.Pull
-import com.diegoferreiracaetano.domain.repo.Repo
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Action
