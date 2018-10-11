@@ -4,9 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.domain.NetworkState
-import com.diegoferreiracaetano.domain.Status
 import com.diegoferreiracaetano.domain.pull.Pull
-import com.diegoferreiracaetano.github.ui.repo.adapter.RepoAdapter
 
 object ViewBindingAdapters{
     @JvmStatic

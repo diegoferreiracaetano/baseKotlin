@@ -2,10 +2,8 @@ package com.diegoferreiracaetano.data.repo
 
 import androidx.paging.DataSource
 import com.diegoferreiracaetano.data.api.GithubApi
-import com.diegoferreiracaetano.domain.pull.Pull
 import com.diegoferreiracaetano.domain.repo.Repo
 import com.diegoferreiracaetano.domain.repo.RepoRepository
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.Retrofit

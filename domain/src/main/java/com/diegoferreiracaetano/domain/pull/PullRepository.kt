@@ -1,7 +1,6 @@
 package com.diegoferreiracaetano.domain.pull
 
 import androidx.paging.DataSource
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 

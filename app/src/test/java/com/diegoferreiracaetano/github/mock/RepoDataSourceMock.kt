@@ -6,26 +6,27 @@ import androidx.paging.PageKeyedDataSource
 import com.diegoferreiracaetano.domain.repo.Repo
 
 
-class RepoDataSource(): PageKeyedDataSource<Int, Repo>() {
+class RepoDataSource(val list:List<Repo>): PageKeyedDataSource<Int, Repo>() {
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int,Repo>) {
-        callback.onResult(listOf(GitHubFake.repo),0,1)
+        callback.onResult(list,0,1)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int,Repo>) {
-        callback.onResult(listOf(GitHubFake.repo),params.key+1)
+        callback.onResult(list,params.key+1)
+
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int,Repo>) {
 
     }
 
-    class RepoDataSourceFactory () : DataSource.Factory<Int, Repo>() {
+    class RepoDataSourceFactory (val list: List<Repo>) : DataSource.Factory<Int, Repo>() {
 
         val source = MutableLiveData<RepoDataSource>()
 
         override fun create(): DataSource<Int, Repo> {
-            val dataSource = RepoDataSource()
+            val dataSource = RepoDataSource(list)
             source.postValue(dataSource)
             return dataSource
         }

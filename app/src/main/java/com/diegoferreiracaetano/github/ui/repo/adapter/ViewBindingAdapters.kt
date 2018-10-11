@@ -4,7 +4,6 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.domain.NetworkState
-import com.diegoferreiracaetano.domain.Status
 import com.diegoferreiracaetano.domain.repo.Repo
 
 object ViewBindingAdapters{

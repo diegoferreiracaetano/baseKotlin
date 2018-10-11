@@ -1,9 +1,7 @@
 package com.diegoferreiracaetano.domain.pull.interactor
 
-import com.diegoferreiracaetano.domain.InteractorCompletable
 import com.diegoferreiracaetano.domain.InteractorFlowable
 import com.diegoferreiracaetano.domain.pull.PullRepository
-import io.reactivex.Completable
 import io.reactivex.Flowable
 
 class SavePullInicialInteractor(private val repository: PullRepository): InteractorFlowable<List<Long>,SavePullInicialInteractor.Request>() {

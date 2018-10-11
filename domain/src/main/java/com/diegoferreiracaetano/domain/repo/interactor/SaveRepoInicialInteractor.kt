@@ -1,9 +1,7 @@
 package com.diegoferreiracaetano.domain.repo.interactor
 
-import com.diegoferreiracaetano.domain.InteractorCompletable
 import com.diegoferreiracaetano.domain.InteractorFlowable
 import com.diegoferreiracaetano.domain.repo.RepoRepository
-import io.reactivex.Completable
 import io.reactivex.Flowable
 
 class SaveRepoInicialInteractor(private val repository: RepoRepository): InteractorFlowable<List<Long>,SaveRepoInicialInteractor.Request>() {

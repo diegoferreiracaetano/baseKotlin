@@ -7,11 +7,7 @@ import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.repo.Repo
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
-import io.reactivex.observers.DefaultObserver
-import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.subscribers.DisposableSubscriber
 
 class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoInicialInteractor,
