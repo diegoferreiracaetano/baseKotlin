@@ -58,8 +58,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$libs.loggingInterceptor"
     implementation "com.github.bumptech.glide:glide:$libs.glide"
 
-    implementation "androidx.paging:paging-common:$libs.paging"
+
     implementation "androidx.paging:paging-runtime:$libs.paging"
+    testImplementation "androidx.paging:paging-common:$libs.paging"
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$libs.nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$libs.nav_version"
@@ -68,7 +69,6 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$libs.circleImage"
 
     implementation "androidx.room:room-rxjava2:$libs.room"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     kapt "androidx.room:room-compiler:$libs.room"
 
     testImplementation "junit:junit:$test.junit"
