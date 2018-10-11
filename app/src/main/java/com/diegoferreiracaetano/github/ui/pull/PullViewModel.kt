@@ -27,7 +27,7 @@ class PullViewModel(private val getPullInteractor: GetListPullInteractor,
         val config = PagedList.Config.Builder()
                 .setPageSize(Constants.PAGE_SIZE)
                 .setInitialLoadSizeHint(Constants.PAGE_SIZE)
-                .setEnablePlaceholders(true)
+                .setEnablePlaceholders(false)
                 .build()
 
         return LivePagedListBuilder<Int, Pull>(getPullInteractor.execute(GetListPullInteractor.Request(pair.first,pair.second)), config)
