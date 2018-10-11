@@ -41,7 +41,7 @@ class PullFragment : Fragment(),PullViewHolder.OnItemClickListener {
         if (arguments != null) {
             val repoName = arguments!!.getString(EXTRA_REPO_NAME)
             val ownerName = arguments!!.getString(EXTRA_OWNER_NAME)
-            (activity as MainActivity).supportActionBar?.subtitle = repoName.capitalize()
+            (activity as MainActivity).supportActionBar?.subtitle = repoName?.capitalize()
             viewModel.setParams(Pair(ownerName,repoName))
         }
     }

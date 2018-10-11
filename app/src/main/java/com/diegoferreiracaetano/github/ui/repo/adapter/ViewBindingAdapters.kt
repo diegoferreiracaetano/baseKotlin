@@ -4,6 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.domain.NetworkState
+import com.diegoferreiracaetano.domain.Status
 import com.diegoferreiracaetano.domain.repo.Repo
 
 object ViewBindingAdapters{
@@ -12,9 +13,18 @@ object ViewBindingAdapters{
     fun RecyclerView.setReviewAdapter(items: PagedList<Repo>?, retryCallback: () -> Unit,
                                       listener: RepoViewHolder.OnItemClickListener,
                                       networkState: NetworkState?) {
+        items?.let {
             if(adapter == null)
                 adapter = RepoAdapter(retryCallback,listener)
             (adapter as RepoAdapter).submitList(items)
             (adapter as RepoAdapter).setNetworkState(networkState)
+
+            if(items.isEmpty() && networkState?.status == Status.SUCCESS ) {
+                (adapter as RepoAdapter).setNetworkState(null)
+            }else {
+                (adapter as RepoAdapter).setNetworkState(networkState)
+            }
+
+        }
     }
 }

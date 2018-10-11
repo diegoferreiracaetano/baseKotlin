@@ -1,6 +1,7 @@
 package com.diegoferreiracaetano.github.ui.repo
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -36,8 +37,8 @@ class RepoViewModel(private val getRepoInteractor: GetListRepoInteractor,
         callback.onZeroItemsLoaded()
     }
 
-    val networkState = callback.networkState
-    val initialLoad =  callback.initialLoad
+    val networkState = Transformations.switchMap(result,{callback.networkState})
+    val initialLoad =  Transformations.switchMap(result,{callback.initialLoad})
 
     override fun onCleared() {
         super.onCleared()
