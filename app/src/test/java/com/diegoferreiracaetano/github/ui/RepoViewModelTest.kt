@@ -10,6 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 class RepoViewModelTest{
@@ -34,6 +35,11 @@ class RepoViewModelTest{
     @Throws(Exception::class)
     fun `Given repos, When loadR repos, Should update result`() {
            val dataSource =  RepoDataSource.RepoDataSourceFactory()
+
+
+        `when`(getRepoInteractor.execute()).thenReturn(dataSource)
+
+        
 
     }
 }
