@@ -2,6 +2,7 @@ package com.diegoferreiracaetano.data.repo
 
 import androidx.paging.DataSource
 import com.diegoferreiracaetano.data.api.GithubApi
+import com.diegoferreiracaetano.domain.pull.Pull
 import com.diegoferreiracaetano.domain.repo.Repo
 import com.diegoferreiracaetano.domain.repo.RepoRepository
 import io.reactivex.Completable
@@ -26,12 +27,8 @@ class RepoImpRepository(private var dao: RepoDao,
        return dao.getAll()
     }
 
-    override fun save(list: List<Repo>): Completable {
-        return Completable.create {
-            val insert = dao.save(list)
-            if(insert.size == list.size)
-                it.onComplete()
-        }
+    override fun save(list: List<Repo>): Flowable<List<Long>> {
+       return Flowable.just(dao.save(list))
     }
 
     override fun getTotal(): Single<Int> {

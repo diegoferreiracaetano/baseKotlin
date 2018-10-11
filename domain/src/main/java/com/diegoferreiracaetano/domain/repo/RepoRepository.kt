@@ -12,6 +12,6 @@ interface RepoRepository {
 
     fun getTotal(): Single<Int>
 
-    fun save(list: List<Repo>): Completable
+    fun save(list: List<Repo>): Flowable<List<Long>>
 
 }

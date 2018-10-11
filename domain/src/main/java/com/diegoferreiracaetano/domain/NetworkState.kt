@@ -19,6 +19,7 @@ package com.diegoferreiracaetano.domain
 enum class Status {
     RUNNING,
     SUCCESS,
+    EMPTY,
     FAILED
 }
 
@@ -29,6 +30,7 @@ data class NetworkState private constructor(
     companion object {
         val LOADED = NetworkState(Status.SUCCESS)
         val LOADING = NetworkState(Status.RUNNING)
+        val IS_EMPTY = NetworkState(Status.EMPTY)
         fun error(msg: String?) = NetworkState(Status.FAILED, msg)
     }
 }

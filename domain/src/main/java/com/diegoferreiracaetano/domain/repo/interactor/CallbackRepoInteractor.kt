@@ -7,8 +7,12 @@ import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.repo.Repo
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
+import io.reactivex.observers.DefaultObserver
 import io.reactivex.observers.DisposableCompletableObserver
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 
 class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoInicialInteractor,
                              private val saveCacheInteractor: SaveRepoPageInteractor): PagedList.BoundaryCallback<Repo>() {
@@ -20,10 +24,19 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoIni
 
     override fun onZeroItemsLoaded() {
         disposable.add(saveInicialCacheInteractor.execute(SaveRepoInicialInteractor.Request(1))
-                .subscribeWith(object : DisposableCompletableObserver() {
+                .subscribeWith(object : DisposableSubscriber<List<Long>>(){
                     override fun onStart() {
                         super.onStart()
                         initialLoad.postValue(NetworkState.LOADING)
+                    }
+
+                    override fun onNext(t: List<Long>) {
+                        if(t.isEmpty()){
+                            initialLoad.postValue(NetworkState.IS_EMPTY)
+                        }else{
+                            initialLoad.postValue(NetworkState.LOADED)
+                            networkState.postValue(NetworkState.LOADED)
+                        }
                     }
 
                     override fun onError(t: Throwable) {
@@ -34,18 +47,21 @@ class CallbackRepoInteractor(private val saveInicialCacheInteractor: SaveRepoIni
                     }
 
                     override fun onComplete() {
-                        initialLoad.postValue(NetworkState.LOADED)
-                        networkState.postValue(NetworkState.LOADED)
+
                     }
                 }))
     }
 
     override fun onItemAtEndLoaded(repo: Repo) {
         disposable.add(saveCacheInteractor.execute(SaveRepoPageInteractor.Request(Constants.PAGE_SIZE))
-                .subscribeWith(object : DisposableCompletableObserver() {
+                .subscribeWith(object : DisposableSubscriber<List<Long>>() {
                     override fun onStart() {
                         super.onStart()
                         networkState.postValue(NetworkState.LOADING)
+                    }
+
+                    override fun onNext(t: List<Long>) {
+
                     }
 
                     override fun onError(t: Throwable) {

@@ -1,16 +1,18 @@
 package com.diegoferreiracaetano.domain.repo.interactor
 
 import com.diegoferreiracaetano.domain.InteractorCompletable
+import com.diegoferreiracaetano.domain.InteractorFlowable
 import com.diegoferreiracaetano.domain.repo.RepoRepository
 import io.reactivex.Completable
+import io.reactivex.Flowable
 
-class SaveRepoInicialInteractor(private val repository: RepoRepository): InteractorCompletable<SaveRepoInicialInteractor.Request>() {
+class SaveRepoInicialInteractor(private val repository: RepoRepository): InteractorFlowable<List<Long>,SaveRepoInicialInteractor.Request>() {
 
-    override fun create(request: Request): Completable {
+    override fun create(request: Request): Flowable<List<Long>> {
         return repository.getList(request.page)
-                .flatMapCompletable { repository.save(it) }
+                .flatMap { repository.save(it) }
     }
 
 
-    data class Request(val page:Int) : InteractorCompletable.Request()
+    data class Request(val page:Int) : InteractorFlowable.Request()
 }

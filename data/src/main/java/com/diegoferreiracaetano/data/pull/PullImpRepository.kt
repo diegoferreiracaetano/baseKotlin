@@ -27,9 +27,8 @@ class PullImpRepository(private var dao: PullDao,
         return dao.getAll(owner,repo)
     }
 
-    override fun save(list: List<Pull>): Completable {
-        dao.save(list)
-        return Completable.complete()
+    override fun save(list: List<Pull>): Flowable<List<Long>> {
+        return Flowable.just(dao.save(list))
     }
 
     override fun getTotal(): Single<Int> {

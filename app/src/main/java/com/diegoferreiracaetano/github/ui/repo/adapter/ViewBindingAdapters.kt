@@ -19,12 +19,6 @@ object ViewBindingAdapters{
             (adapter as RepoAdapter).submitList(items)
             (adapter as RepoAdapter).setNetworkState(networkState)
 
-            if(items.isEmpty() && networkState?.status == Status.SUCCESS ) {
-                (adapter as RepoAdapter).setNetworkState(null)
-            }else {
-                (adapter as RepoAdapter).setNetworkState(networkState)
-            }
-
         }
     }
 }

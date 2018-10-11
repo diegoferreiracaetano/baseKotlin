@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.domain.NetworkState
 import com.diegoferreiracaetano.domain.Status
 import com.diegoferreiracaetano.domain.pull.Pull
+import com.diegoferreiracaetano.github.ui.repo.adapter.RepoAdapter
 
 object ViewBindingAdapters{
     @JvmStatic
@@ -17,12 +18,8 @@ object ViewBindingAdapters{
             if(adapter == null)
                 adapter = PullAdapter(retry,callback)
             (adapter as PullAdapter).submitList(items)
+            (adapter as PullAdapter).setNetworkState(networkState)
 
-            if(items.isEmpty() && networkState?.status == Status.SUCCESS ) {
-                (adapter as PullAdapter).setNetworkState(null)
-            }else {
-                (adapter as PullAdapter).setNetworkState(networkState)
-            }
         }
     }
 }
